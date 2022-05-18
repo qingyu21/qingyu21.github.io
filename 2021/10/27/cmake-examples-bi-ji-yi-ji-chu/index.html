@@ -1,0 +1,1574 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Cmake Examples笔记（一）基础, qingyu&#39;s blog">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Cmake Examples笔记（一）基础 | qingyu&#39;s blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">qingyu&#39;s blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">qingyu&#39;s blog</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Cmake Examples笔记（一）基础</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/CMake/">
+                                <span class="chip bg-color">CMake</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/CMake/" class="post-category">
+                                CMake
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-10-27
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.4k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    17 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="CMake-Examples笔记（一）基础"><a href="#CMake-Examples笔记（一）基础" class="headerlink" title="CMake Examples笔记（一）基础"></a>CMake Examples笔记（一）基础</h1><h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>本文是CMake Exampe的学习笔记。</p>
+<p>具体的例子可以等用到的时候再仔细看。</p>
+<h2 id="1-Hello-CMake"><a href="#1-Hello-CMake" class="headerlink" title="1. Hello CMake"></a>1. Hello CMake</h2><ul>
+<li><code>CMakeLists.txt</code>: Contains the CMake commands you wish to run</li>
+<li><code>main.cpp</code>: A simple “Hello World” cpp file.</li>
+</ul>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token comment"># Set the minimum version of CMake that can be used</span>
+<span class="token comment"># To find the cmake version run</span>
+<span class="token comment"># $ cmake --version</span>
+<span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.5</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Set the project name</span>
+<span class="token keyword">project</span> <span class="token punctuation">(</span>hello_cmake<span class="token punctuation">)</span>
+
+<span class="token comment"># Add an executable</span>
+<span class="token keyword">add_executable</span><span class="token punctuation">(</span>hello_cmake main.cpp<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>一个常见的做法是将project name和executable name设置为同一个：</p>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">2.6</span><span class="token punctuation">)</span>
+<span class="token comment"># the project() function create a variable $&#123;PROJECT_NAME&#125; with the value hello_cmake.</span>
+<span class="token keyword">project</span> <span class="token punctuation">(</span>hello_cmake<span class="token punctuation">)</span>
+<span class="token keyword">add_executable</span><span class="token punctuation">(</span><span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_NAME</span><span class="token punctuation">&#125;</span> main.cpp<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h3 id="Binary-Directory"><a href="#Binary-Directory" class="headerlink" title="Binary Directory"></a>Binary Directory</h3><p><code>CMAKE_BINARY_DIR</code>：运行cmake命令的根目录，它同时也是所有生成的二进制文件的根目录。</p>
+<ul>
+<li>In-Place Build：在与源代码相同的目录结构中生成所有临时构建文件。（源文件和构建文件穿插在一起，所以比较乱）</li>
+<li>Out-of-Source Build：新建一个<code>build</code>文件夹，并在其中运行cmake命令，参数为源文件所在的目录。（源代码树比较清楚，是推荐的方式）</li>
+</ul>
+<h3 id="Building-the-Examples"><a href="#Building-the-Examples" class="headerlink" title="Building the Examples"></a>Building the Examples</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> build
+<span class="token builtin class-name">cd</span> build
+cmake <span class="token punctuation">..</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="2-Hello-Headers"><a href="#2-Hello-Headers" class="headerlink" title="2. Hello Headers"></a>2. Hello Headers</h2><p>将源文件和头文件放到不同的文件夹（<code>src</code>、<code>include</code>）中保存：</p>
+<ul>
+<li><code>CmakeLists.txt</code>: Contains the CMake commands you wish to run.</li>
+<li><code>include/Hello.h</code>: The header file to include.</li>
+<li><code>src/Hello.cpp</code>: A source file to compile.</li>
+<li><code>src/main.cpp</code>: The source file with main.</li>
+</ul>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token comment"># Set the minimum version of CMake that can be used</span>
+<span class="token comment"># To find the cmake version run</span>
+<span class="token comment"># $ cmake --version</span>
+<span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.5</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Set the project name</span>
+<span class="token keyword">project</span> <span class="token punctuation">(</span>hello_headers<span class="token punctuation">)</span>
+
+<span class="token comment"># Create a sources variable with a link to all cpp files to compile</span>
+<span class="token keyword">set</span><span class="token punctuation">(</span><span class="token property">SOURCES</span>
+    src/Hello.cpp
+    src/main.cpp
+<span class="token punctuation">)</span>
+
+<span class="token comment"># Add an executable with the above sources</span>
+<span class="token keyword">add_executable</span><span class="token punctuation">(</span>hello_headers <span class="token punctuation">$&#123;</span><span class="token property">SOURCES</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Set the directories that should be included in the build command for this target</span>
+<span class="token comment"># when running g++ these will be included as -I/directory/path/</span>
+<span class="token keyword">target_include_directories</span><span class="token punctuation">(</span>hello_headers
+    <span class="token namespace">PRIVATE</span> 
+        <span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/include
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h4 id="Directory-Paths"><a href="#Directory-Paths" class="headerlink" title="Directory Paths"></a>Directory Paths</h4><p>CMake限定了一些变量，可用于寻找项目中有用的目录。</p>
+<table>
+<thead>
+<tr>
+<th align="left">Variable</th>
+<th align="left">Info</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">CMAKE_SOURCE_DIR</td>
+<td align="left">The root source directory</td>
+</tr>
+<tr>
+<td align="left">CMAKE_CURRENT_SOURCE_DIR</td>
+<td align="left">The current source directory if using sub-projects and directories.</td>
+</tr>
+<tr>
+<td align="left">PROJECT_SOURCE_DIR</td>
+<td align="left">The source directory of the current cmake project.</td>
+</tr>
+<tr>
+<td align="left">CMAKE_BINARY_DIR</td>
+<td align="left">The root binary &#x2F; build directory. This is the directory where you ran the cmake command.</td>
+</tr>
+<tr>
+<td align="left">CMAKE_CURRENT_BINARY_DIR</td>
+<td align="left">The build directory you are currently in.</td>
+</tr>
+<tr>
+<td align="left">PROJECT_BINARY_DIR</td>
+<td align="left">The build directory for the current project.</td>
+</tr>
+</tbody></table>
+<h4 id="Source-Files-Variable"><a href="#Source-Files-Variable" class="headerlink" title="Source Files Variable"></a>Source Files Variable</h4><p>可通过<code>set()</code>来将一些源文件包含到一个变量中。</p>
+<blockquote>
+<p> An alternative to setting specific file names in the SOURCES variable is to use a GLOB command to find files using wildcard pattern matching.</p>
+<p> <code>file(GLOB SOURCES &quot;src/*.cpp&quot;)</code></p>
+</blockquote>
+<blockquote>
+<p>For modern CMake it is NOT recommended to use a variable for sources. Instead it is typical to directly declare the sources in the add_xxx function.</p>
+<p>This is particularly important for glob commands which may not always show you the correct results if you add a new source file.</p>
+</blockquote>
+<h4 id="Including-Directories"><a href="#Including-Directories" class="headerlink" title="Including Directories"></a>Including Directories</h4><p><code>target_include_directories()</code>可以使编译器意识到<em>不同的include文件夹</em>。</p>
+<p>编译时，这些文件夹被添加到编译命令上：<code>-I/directory/path</code>。</p>
+<blockquote>
+<p>The PRIVATE identifier specifies the scope of the include. This is important for libraries and is explained in the next example. More details on the function is available <a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/v3.0/command/target_include_directories.html">here</a></p>
+</blockquote>
+<h4 id="Verbose-Output"><a href="#Verbose-Output" class="headerlink" title="Verbose Output"></a>Verbose Output</h4><blockquote>
+<p>In the previous examples, when running the make command the output only shows the status of the build. To see the full output for debugging purposes you can add VERBOSE&#x3D;1 flag when running make.</p>
+</blockquote>
+<blockquote>
+<p>The VERBOSE output is show below, and a examination of the output shows the include directories being added to the c++ compiler command.</p>
+</blockquote>
+<h2 id="3-Static-Library"><a href="#3-Static-Library" class="headerlink" title="3. Static Library"></a>3. Static Library</h2><p>创建并链接一个静态库。本例子仅仅将库文件和二进制文件放在同一个文件夹中，通常它们是放在子项目中的。</p>
+<ul>
+<li><code>CMakeLists.txt</code>: Contains the CMake commands you wish to run</li>
+<li><code>include/static/Hello.h</code>: The header file to include</li>
+<li><code>src/Hello.cpp</code>: A source file to compile</li>
+<li><code>src/main.cpp</code>: The source file with main</li>
+</ul>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.5</span><span class="token punctuation">)</span>
+
+<span class="token keyword">project</span><span class="token punctuation">(</span>hello_library<span class="token punctuation">)</span>
+
+<span class="token comment">############################################################</span>
+<span class="token comment"># Create a library</span>
+<span class="token comment">############################################################</span>
+
+<span class="token comment">#Generate the static library from the library sources</span>
+<span class="token comment">#library name: libhello_library.a</span>
+<span class="token keyword">add_library</span><span class="token punctuation">(</span>hello_library <span class="token namespace">STATIC</span> 
+    src/Hello.cpp
+<span class="token punctuation">)</span>
+
+<span class="token keyword">target_include_directories</span><span class="token punctuation">(</span>hello_library
+    <span class="token namespace">PUBLIC</span> 
+        <span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/include
+<span class="token punctuation">)</span>
+
+
+<span class="token comment">############################################################</span>
+<span class="token comment"># Create an executable</span>
+<span class="token comment">############################################################</span>
+
+<span class="token comment"># Add an executable with the above sources</span>
+<span class="token keyword">add_executable</span><span class="token punctuation">(</span>hello_binary 
+    src/main.cpp
+<span class="token punctuation">)</span>
+
+<span class="token comment"># link the new hello_library target with the hello_binary target</span>
+<span class="token keyword">target_link_libraries</span><span class="token punctuation">(</span> hello_binary
+    <span class="token namespace">PRIVATE</span> 
+        hello_library
+<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><h4 id="Adding-a-Static-Library"><a href="#Adding-a-Static-Library" class="headerlink" title="Adding a Static Library"></a>Adding a Static Library</h4><p><code>add_library()</code>用于通过一些源文件来创建一个库文件。</p>
+<blockquote>
+<p>As mentioned in the previous example, we pass the source files directly to the add_library call, as recommended for modern CMake.</p>
+</blockquote>
+<h4 id="Populating-Including-Directories"><a href="#Populating-Including-Directories" class="headerlink" title="Populating Including Directories"></a>Populating Including Directories</h4><p>我们在<code>target_include_directories</code>中将范围设置为<code>PUBLIC</code>。</p>
+<blockquote>
+<p>This will cause the included directory used in the following places:</p>
+<ul>
+<li><p>When compiling the library </p>
+</li>
+<li><p>When compiling any additional target that links the library.</p>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>The meaning of scopes are:</p>
+<ul>
+<li>PRIVATE - the directory is added to this target’s include directories</li>
+<li>INTERFACE - the directory is added to the include directories for any targets that link this library.</li>
+<li>PUBLIC - As above, it is included in this library and also any targets that link this library.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>The meaning of scopes are:</p>
+<ul>
+<li>PRIVATE - the directory is added to this target’s include directories</li>
+<li>INTERFACE - the directory is added to the include directories for any targets that link this library.</li>
+<li>PUBLIC - As above, it is included in this library and also any targets that link this library.</li>
+</ul>
+</blockquote>
+<h4 id="Linking-a-Library"><a href="#Linking-a-Library" class="headerlink" title="Linking a Library"></a>Linking a Library</h4><p>使用<code>target_link_libraries()</code>来告诉编译器将此库文件链接到可执行文件。</p>
+<p>链接的过程中，也会将带有<code>PUBLIC</code>和<code>INTERFACE</code>的include文件夹的作用域传播下去。</p>
+<h2 id="4-Shared-Library"><a href="#4-Shared-Library" class="headerlink" title="4. Shared Library"></a>4. Shared Library</h2><p>创建并链接一个动态库。</p>
+<p>本例子同样展示如何创建一个<a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/v3.0/manual/cmake-buildsystem.7.html#alias-targets">alias target</a>。</p>
+<ul>
+<li><code>CMakeLists.txt</code>: Contains the CMake commands you wish to run</li>
+<li><code>include/shared/Hello.h</code>: The header file to include</li>
+<li><code>src/Hello.cpp</code>: A source file to compile</li>
+<li><code>src/main.cpp</code>: The source file with main</li>
+</ul>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.5</span><span class="token punctuation">)</span>
+
+<span class="token keyword">project</span><span class="token punctuation">(</span>hello_library<span class="token punctuation">)</span>
+
+<span class="token comment">############################################################</span>
+<span class="token comment"># Create a library</span>
+<span class="token comment">############################################################</span>
+
+<span class="token comment">#Generate the shared library from the library sources</span>
+<span class="token comment">#library name: libhello_library.so</span>
+<span class="token keyword">add_library</span><span class="token punctuation">(</span>hello_library <span class="token namespace">SHARED</span> 
+    src/Hello.cpp
+<span class="token punctuation">)</span>
+<span class="token keyword">add_library</span><span class="token punctuation">(</span><span class="token inserted class-name">hello::library</span> ALIAS hello_library<span class="token punctuation">)</span>
+
+<span class="token keyword">target_include_directories</span><span class="token punctuation">(</span>hello_library
+    <span class="token namespace">PUBLIC</span> 
+        <span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/include
+<span class="token punctuation">)</span>
+
+<span class="token comment">############################################################</span>
+<span class="token comment"># Create an executable</span>
+<span class="token comment">############################################################</span>
+
+<span class="token comment"># Add an executable with the above sources</span>
+<span class="token keyword">add_executable</span><span class="token punctuation">(</span>hello_binary
+    src/main.cpp
+<span class="token punctuation">)</span>
+
+<span class="token comment"># link the new hello_library target with the hello_binary target</span>
+<span class="token keyword">target_link_libraries</span><span class="token punctuation">(</span> hello_binary
+    <span class="token namespace">PRIVATE</span> 
+        <span class="token inserted class-name">hello::library</span>
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h3><h4 id="Adding-a-Shared-Library"><a href="#Adding-a-Shared-Library" class="headerlink" title="Adding a Shared Library"></a>Adding a Shared Library</h4><p>利用<code>add_library()</code>来创建一个动态库。</p>
+<h4 id="Alias-Target"><a href="#Alias-Target" class="headerlink" title="Alias Target"></a>Alias Target</h4><blockquote>
+<p>As the name suggests an <a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/v3.0/manual/cmake-buildsystem.7.html#alias-targets">alias target</a> is an alternative name for a target that can be used instead of the real target name in read-only contexts.</p>
+</blockquote>
+<h4 id="Linking-a-Shared-Library"><a href="#Linking-a-Shared-Library" class="headerlink" title="Linking a Shared Library"></a>Linking a Shared Library</h4><p><code>target_link_library()</code></p>
+<h2 id="5-Installing"><a href="#5-Installing" class="headerlink" title="5. Installing"></a>5. Installing</h2><p>创建一个<code>make install</code>目标，来将文件和二进制安装到系统中。</p>
+<ul>
+<li><code>CMakeLists.txt</code>: Contains the CMake commands you wish to run</li>
+<li><code>cmake-examples.conf</code>: An example configuration file</li>
+<li><code>include/installing/Hello.h</code>: The header file to include</li>
+<li><code>src/Hello.cpp</code>: A source file to compile</li>
+<li><code>src/main.cpp</code>: The source file with main</li>
+</ul>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.5</span><span class="token punctuation">)</span>
+
+<span class="token keyword">project</span><span class="token punctuation">(</span>cmake_examples_install<span class="token punctuation">)</span>
+
+<span class="token comment">############################################################</span>
+<span class="token comment"># Create a library</span>
+<span class="token comment">############################################################</span>
+
+<span class="token comment">#Generate the shared library from the library sources</span>
+<span class="token keyword">add_library</span><span class="token punctuation">(</span>cmake_examples_inst <span class="token namespace">SHARED</span>
+    src/Hello.cpp
+<span class="token punctuation">)</span>
+
+<span class="token keyword">target_include_directories</span><span class="token punctuation">(</span>cmake_examples_inst
+    <span class="token namespace">PUBLIC</span> 
+        <span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/include
+<span class="token punctuation">)</span>
+
+<span class="token comment">############################################################</span>
+<span class="token comment"># Create an executable</span>
+<span class="token comment">############################################################</span>
+
+<span class="token comment"># Add an executable with the above sources</span>
+<span class="token keyword">add_executable</span><span class="token punctuation">(</span>cmake_examples_inst_bin
+    src/main.cpp
+<span class="token punctuation">)</span>
+
+<span class="token comment"># link the new hello_library target with the hello_binary target</span>
+<span class="token keyword">target_link_libraries</span><span class="token punctuation">(</span> cmake_examples_inst_bin
+    <span class="token namespace">PRIVATE</span> 
+        cmake_examples_inst
+<span class="token punctuation">)</span>
+
+<span class="token comment">############################################################</span>
+<span class="token comment"># Install</span>
+<span class="token comment">############################################################</span>
+
+<span class="token comment"># Binaries</span>
+<span class="token keyword">install</span> <span class="token punctuation">(</span>TARGETS cmake_examples_inst_bin
+    DESTINATION bin<span class="token punctuation">)</span>
+
+<span class="token comment"># Library</span>
+<span class="token comment"># Note: may not work on windows</span>
+<span class="token keyword">install</span> <span class="token punctuation">(</span>TARGETS cmake_examples_inst
+    LIBRARY DESTINATION lib<span class="token punctuation">)</span>
+
+<span class="token comment"># Header files</span>
+<span class="token keyword">install</span><span class="token punctuation">(</span>DIRECTORY <span class="token punctuation">$&#123;</span><span class="token variable">PROJECT_SOURCE_DIR</span><span class="token punctuation">&#125;</span>/include/ 
+    DESTINATION include<span class="token punctuation">)</span>
+
+<span class="token comment"># Config</span>
+<span class="token keyword">install</span> <span class="token punctuation">(</span>FILES cmake-examples.conf
+    DESTINATION etc<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="概念-3"><a href="#概念-3" class="headerlink" title="概念"></a>概念</h3><h4 id="Installing"><a href="#Installing" class="headerlink" title="Installing"></a>Installing</h4><p>CMake提供了添加<code>make instlal</code>目标的能力，允许用户安装二进制文件、库和其他文件。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">cmake <span class="token punctuation">..</span> -D <span class="token assign-left variable">CMAKE_INSTALL_PREFIX</span><span class="token operator">=</span>/install/location<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>通过<code>install()</code>来安装文件。</p>
+<blockquote>
+<p>After <code>make install</code> has been run, CMake generates an install_manifest.txt file which includes details on all installed files.</p>
+</blockquote>
+<blockquote>
+<p>If you run the <code>make install</code> command as root, the install_manifest.txt file will be owned by root.</p>
+</blockquote>
+<h2 id="6-Build-Type"><a href="#6-Build-Type" class="headerlink" title="6. Build Type"></a>6. Build Type</h2><p>CMake有一些内置的构建配置，可以用来编译你的项目。这些配置指定了优化级别以及调试信息是否包含在二进制文件中。</p>
+<p>提供的构建级别：</p>
+<ul>
+<li>Release - Adds the <code>-O3 -DNDEBUG</code> flags to the compiler</li>
+<li>Debug - Adds the <code>-g</code> flag</li>
+<li>MinSizeRel - Adds <code>-Os -DNDEBUG</code></li>
+<li>RelWithDebInfo - Adds <code>-O2 -g -DNDEBUG</code> flags</li>
+</ul>
+<h3 id="概念-4"><a href="#概念-4" class="headerlink" title="概念"></a>概念</h3><h4 id="Set-Build-Type"><a href="#Set-Build-Type" class="headerlink" title="Set Build Type"></a>Set Build Type</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">cmake <span class="token punctuation">..</span> -DCMAKE_BUILD_TYPE<span class="token operator">=</span>Release<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="Set-Default-Build-Type"><a href="#Set-Default-Build-Type" class="headerlink" title="Set Default Build Type"></a>Set Default Build Type</h4><p>CMake提供的默认构建类型是不包含用于优化的编译器标志。</p>
+<p>可以设置一个默认的构建类型：在顶层CMakeLists.txt中添加：</p>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">NOT</span> <span class="token variable">CMAKE_BUILD_TYPE</span> <span class="token operator">AND</span> <span class="token operator">NOT</span> <span class="token variable">CMAKE_CONFIGURATION_TYPES</span><span class="token punctuation">)</span>
+  <span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"Setting build type to 'RelWithDebInfo' as none was specified."</span><span class="token punctuation">)</span>
+  <span class="token keyword">set</span><span class="token punctuation">(</span><span class="token variable">CMAKE_BUILD_TYPE</span> RelWithDebInfo <span class="token variable">CACHE</span> STRING <span class="token string">"Choose the type of build."</span> FORCE<span class="token punctuation">)</span>
+  <span class="token comment"># Set the possible values of build type for cmake-gui</span>
+  <span class="token keyword">set_property</span><span class="token punctuation">(</span><span class="token variable">CACHE</span> <span class="token variable">CMAKE_BUILD_TYPE</span> PROPERTY <span class="token property">STRINGS</span> <span class="token string">"Debug"</span> <span class="token string">"Release"</span>
+    <span class="token string">"MinSizeRel"</span> <span class="token string">"RelWithDebInfo"</span><span class="token punctuation">)</span>
+<span class="token keyword">endif</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="7-Compile-Flags"><a href="#7-Compile-Flags" class="headerlink" title="7. Compile Flags"></a>7. Compile Flags</h2><p>CMake支持以多种方式来设置compile flags：</p>
+<ul>
+<li><code>target_compile_definitions()</code></li>
+<li>使用变量<code>CMAKE_C_FLAGS</code>和<code>CMAKE_CXX_FLAGS</code></li>
+</ul>
+<p>文件：</p>
+<ul>
+<li><code>CmakeLists.txt</code>: Contains the CMake commands you wish to run</li>
+<li><code>main.cpp</code>:  The source file with main</li>
+</ul>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.5</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Set a default C++ compile flag</span>
+<span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token variable">CMAKE_CXX_FLAGS</span> <span class="token string">"<span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">CMAKE_CXX_FLAGS</span><span class="token punctuation">&#125;</span></span> -DEX2"</span> <span class="token variable">CACHE</span> STRING <span class="token string">"Set C++ Compiler Flags"</span> FORCE<span class="token punctuation">)</span>
+
+<span class="token comment"># Set the project name</span>
+<span class="token keyword">project</span> <span class="token punctuation">(</span>compile_flags<span class="token punctuation">)</span>
+
+<span class="token comment"># Add an executable</span>
+<span class="token keyword">add_executable</span><span class="token punctuation">(</span>cmake_examples_compile_flags main.cpp<span class="token punctuation">)</span>
+
+<span class="token keyword">target_compile_definitions</span><span class="token punctuation">(</span>cmake_examples_compile_flags 
+    <span class="token namespace">PRIVATE</span> EX3
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h3><h4 id="Set-Per-Target-C-Flags"><a href="#Set-Per-Target-C-Flags" class="headerlink" title="Set Per-Target C++ Flags"></a>Set Per-Target C++ Flags</h4><p>Modern CMake中推荐的设置C++ flags的方法是使用per-target flags，可以通过<code>target_compile_definitions</code>将它们填入到其它的targets，这将为库填充<code>INTERFACE_COMPILE_DEFINITIONS</code>，并根据scope将definition推送到链接的target。</p>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token comment"># This will cause the compiler to add the definition -DEX3 when compiling the target.</span>
+<span class="token keyword">target_compile_definitions</span><span class="token punctuation">(</span>cmake_examples_compile_flags
+    <span class="token namespace">PRIVATE</span> EX3
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>If the target was a library and the scope PUBLIC or INTERFACE has been chosen the definition would also be included in any executables that link this target.</p>
+<p>For compiler options you can also use the target_compile_options() <a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/v3.0/command/target_compile_options.html">function</a>.</p>
+</blockquote>
+<h4 id="Set-Default-C-Flags"><a href="#Set-Default-C-Flags" class="headerlink" title="Set Default C++ Flags"></a>Set Default C++ Flags</h4><p>默认的<code>CMAKE_CXX_FLAGS</code>要么是空的，要么包含适合Build Type的flags。</p>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token comment"># set additional default compile flags</span>
+<span class="token comment"># add to your top level CMakeLists.txt</span>
+<span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token variable">CMAKE_CXX_FLAGS</span> <span class="token string">"<span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">CMAKE_CXX_FLAGS</span><span class="token punctuation">&#125;</span></span> -DEX2"</span> <span class="token variable">CACHE</span> STRING <span class="token string">"Set C++ Compiler Flags"</span> FORCE<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>类似的变量：</p>
+<ul>
+<li>Setting C compiler flags using <code>CMAKE_C_FLAGS</code></li>
+<li>Setting linker flags using <code>CMAKE_LINKER_FLAGS</code>.</li>
+</ul>
+<blockquote>
+<p>The values <code>CACHE STRING &quot;Set C++ Compiler Flags&quot; FORCE</code> from the above command are used to force this variable to be set in the CMakeCache.txt file.</p>
+<p>For more details, see <a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/v3.0/command/set.html">here</a></p>
+</blockquote>
+<p>一旦设置了<code>CMAKE_C_FLAGS</code>和<code>CMAKE_CXX_FLAGS</code>，就会为这个目录或任何包含的子目录中的所有目标全局设置一个编译器标志&#x2F;定义。现在不推荐一般使用这种方法，最好使用<code>target_compile_definitions()</code>函数。</p>
+<h4 id="Set-CMake-Flags"><a href="#Set-CMake-Flags" class="headerlink" title="Set CMake Flags"></a>Set CMake Flags</h4><p>类似于build type，我们可以通过以下方式来设置一个global C++ compiler flag。</p>
+<p>gui工具或者<code>cmake .. -DCMAKE_CXX_FLAGS=&quot;-DEX3&quot;</code></p>
+<h2 id="8-Third-Party-Library"><a href="#8-Third-Party-Library" class="headerlink" title="8. Third Party Library"></a>8. Third Party Library</h2><p>几乎大多数重要项目都会有包含第三方库、头文件、程序的需求。</p>
+<p>CMake提供了<code>find_package()</code>函数来找到这些工具的路径，它将以<code>FindXXX.cmake</code>的格式从<code>CMAKE_MODULE_PATH</code>中的文件夹列表中搜索CMake模块。</p>
+<p>在Linux中，默认的search path包含<code>/usr/share/cmake/Modules</code>。</p>
+<ul>
+<li><code>CmakeLists.txt</code>: Contains the CMake commands you wish to run</li>
+<li><code>main.cpp</code>:  The source file with main</li>
+</ul>
+<p>本例子需要boost库的安装。</p>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.5</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Set the project name</span>
+<span class="token keyword">project</span> <span class="token punctuation">(</span>third_party_include<span class="token punctuation">)</span>
+
+
+<span class="token comment"># find a boost install with the libraries filesystem and system</span>
+<span class="token keyword">find_package</span><span class="token punctuation">(</span>Boost <span class="token number">1.46.1</span> REQUIRED COMPONENTS filesystem system<span class="token punctuation">)</span>
+
+<span class="token comment"># check if boost was found</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>Boost_FOUND<span class="token punctuation">)</span>
+    <span class="token keyword">message</span> <span class="token punctuation">(</span><span class="token string">"boost found"</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">message</span> <span class="token punctuation">(</span>FATAL_ERROR <span class="token string">"Cannot find Boost"</span><span class="token punctuation">)</span>
+<span class="token keyword">endif</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Add an executable</span>
+<span class="token keyword">add_executable</span><span class="token punctuation">(</span>third_party_include main.cpp<span class="token punctuation">)</span>
+
+<span class="token comment"># link against the boost libraries</span>
+<span class="token keyword">target_link_libraries</span><span class="token punctuation">(</span> third_party_include
+    <span class="token namespace">PRIVATE</span>
+        <span class="token inserted class-name">Boost::filesystem</span>
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="概念-5"><a href="#概念-5" class="headerlink" title="概念"></a>概念</h3><h4 id="Finding-a-Package"><a href="#Finding-a-Package" class="headerlink" title="Finding a Package"></a>Finding a Package</h4><blockquote>
+<p>The exact format of the arguments to <code>find_package</code> will depend on the module you are looking for. This is typically documented at the top of the <code>FindXXX.cmake</code> file.</p>
+</blockquote>
+<h4 id="Checking-if-the-package-is-found"><a href="#Checking-if-the-package-is-found" class="headerlink" title="Checking if the package is found"></a>Checking if the package is found</h4><blockquote>
+<p>Most included packages will set a variable <code>XXX_FOUND</code>, which can be used to check if the package is available on the system.</p>
+</blockquote>
+<h4 id="Exported-Variables"><a href="#Exported-Variables" class="headerlink" title="Exported Variables"></a>Exported Variables</h4><blockquote>
+<p>After a package is found it will often export variables which can inform the user where to find the library, header, or executable files.</p>
+</blockquote>
+<h4 id="Alias-x2F-Imported-targets"><a href="#Alias-x2F-Imported-targets" class="headerlink" title="Alias &#x2F; Imported targets"></a>Alias &#x2F; Imported targets</h4><blockquote>
+<p>Most modern CMake libraries <a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/v3.6/prop_tgt/IMPORTED.html#prop_tgt:IMPORTED">export</a> ALIAS targets in their module files. </p>
+<p>The benefit of imported targets are that they can also populate include directories and linked libraries.</p>
+</blockquote>
+<h4 id="Non-alias-targets"><a href="#Non-alias-targets" class="headerlink" title="Non-alias targets"></a>Non-alias targets</h4><ul>
+<li><code>xxx_INCLUDE_DIRS</code> A variable pointing to the include directory for the library.</li>
+<li><code>xxx_LIBRARY</code> A variable pointing to the library path.</li>
+</ul>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token comment"># Include the boost headers</span>
+<span class="token keyword">target_include_directories</span><span class="token punctuation">(</span> third_party_include
+    <span class="token namespace">PRIVATE</span> <span class="token punctuation">$&#123;</span>Boost_INCLUDE_DIRS<span class="token punctuation">&#125;</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># link against the boost libraries</span>
+<span class="token keyword">target_link_libraries</span><span class="token punctuation">(</span> third_party_include
+    <span class="token namespace">PRIVATE</span>
+    <span class="token punctuation">$&#123;</span>Boost_SYSTEM_LIBRARY<span class="token punctuation">&#125;</span>
+    <span class="token punctuation">$&#123;</span>Boost_FILESYSTEM_LIBRARY<span class="token punctuation">&#125;</span>
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="9-Compiling-with-clang"><a href="#9-Compiling-with-clang" class="headerlink" title="9. Compiling with clang"></a>9. Compiling with clang</h2><ul>
+<li><code>CmakeLists.txt</code>: Contains the CMake commands you wish to run</li>
+<li><code>main.cpp</code>:  A simple “Hello World” cpp file.</li>
+</ul>
+<h3 id="概念-6"><a href="#概念-6" class="headerlink" title="概念"></a>概念</h3><h4 id="Compiler-Option"><a href="#Compiler-Option" class="headerlink" title="Compiler Option"></a>Compiler Option</h4><p>CMake暴露了一些选项，以控制用于编译和链接你的代码的程序。</p>
+<ul>
+<li><code>CMAKE_C_COMPILER</code> The program used to compile c code.</li>
+<li><code>CMAKE_CXX_COMPILER</code> The program used to compile c++ code.</li>
+<li><code>CMAKE_LINKER</code> The program used to link your binary.</li>
+</ul>
+<h4 id="Setting-Flags"><a href="#Setting-Flags" class="headerlink" title="Setting Flags"></a>Setting Flags</h4><blockquote>
+<p>you can set CMake options using either a cmake gui or by passing from the command line.</p>
+</blockquote>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">cmake <span class="token punctuation">..</span> -DCMAKE_C_COMPILER<span class="token operator">=</span>clang-3.6 -DCMAKE_CXX_COMPILER<span class="token operator">=</span>clang++-3.6<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="10-Building-with-ninja"><a href="#10-Building-with-ninja" class="headerlink" title="10. Building with ninja"></a>10. Building with ninja</h2><p>Cmake是元构建系统，本例尝试使用ninja作为构建工具。</p>
+<ul>
+<li><code>CmakeLists.txt</code>: Contains the CMake commands you wish to run</li>
+<li><code>main.cpp</code>:  A simple “Hello World” cpp file.</li>
+</ul>
+<h3 id="概念-7"><a href="#概念-7" class="headerlink" title="概念"></a>概念</h3><h4 id="Generators"><a href="#Generators" class="headerlink" title="Generators"></a>Generators</h4><p>CMake <a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/v3.0/manual/cmake-generators.7.html">generators</a> 负责向下层的构建系统的输入文件（比如Makefiles）中写入内容。通过<code>cmake --help</code>可以查看可用的generator。</p>
+<h5 id="Command-Line-Build-Tool-Generators"><a href="#Command-Line-Build-Tool-Generators" class="headerlink" title="Command-Line Build Tool Generators"></a>Command-Line Build Tool Generators</h5><p>用于command-line build tools，如Make和Ninja。</p>
+<p>构建工具链必须在利用Cmake生成构建系统之前配置。</p>
+<h5 id="IDE-Build-Tool-Generators"><a href="#IDE-Build-Tool-Generators" class="headerlink" title="IDE Build Tool Generators"></a>IDE Build Tool Generators</h5><p>用于那些包含自己的编译器的IDE，如Visual Studio和Xcode。</p>
+<h5 id="Extra-Generators"><a href="#Extra-Generators" class="headerlink" title="Extra Generators"></a>Extra Generators</h5><blockquote>
+<p>These are generators create a configuration to work with an alternative IDE tool and must be included with either an IDE or Command-Line generator.</p>
+</blockquote>
+<h4 id="Calling-a-Generator"><a href="#Calling-a-Generator" class="headerlink" title="Calling a Generator"></a>Calling a Generator</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># To call a CMake generator you can use the -G command line switch, for example:</span>
+cmake <span class="token punctuation">..</span> -G Ninja
+
+<span class="token comment"># After doing the above CMake will generate the required Ninja build files, which can be run from using the ninja command.</span>
+cmake <span class="token punctuation">..</span> -G Ninja<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="11-Import-Targets"><a href="#11-Import-Targets" class="headerlink" title="11. Import Targets"></a>11. Import Targets</h2><p>新版本的Cmake允许通过使用imported ALIAS targets来链接第三方库。</p>
+<ul>
+<li><code>CmakeLists.txt</code>: Contains the CMake commands you wish to run</li>
+<li><code>main.cpp</code>:  The source file with main</li>
+</ul>
+<blockquote>
+<p>Imported targets are read-only targets that are exported by FindXXX modules.</p>
+</blockquote>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token comment"># automtaically link the Boost::filesystem and Boost::system libraries while also including the Boost include directories.</span>
+<span class="token keyword">target_link_libraries</span><span class="token punctuation">(</span> imported_targets
+      <span class="token namespace">PRIVATE</span>
+          <span class="token inserted class-name">Boost::filesystem</span>
+  <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="12-CPP-Standard"><a href="#12-CPP-Standard" class="headerlink" title="12. CPP Standard"></a>12. CPP Standard</h2><p>展示了设置C++标准的不同方式，以及不同的Cmake版本。</p>
+<h3 id="C-Standard-Common-Method"><a href="#C-Standard-Common-Method" class="headerlink" title="C++ Standard Common Method"></a>C++ Standard Common Method</h3><p>可以通过大多数版本的Cmake来使用。</p>
+<ul>
+<li><code>CmakeLists.txt</code>: Contains the CMake commands you wish to run</li>
+<li><code>main.cpp</code>:  A simple “Hello World” cpp file targeting C++11</li>
+</ul>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token comment"># Set the minimum version of CMake that can be used</span>
+<span class="token comment"># To find the cmake version run</span>
+<span class="token comment"># $ cmake --version</span>
+<span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">2.8</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Set the project name</span>
+<span class="token keyword">project</span> <span class="token punctuation">(</span>hello_cpp11<span class="token punctuation">)</span>
+
+<span class="token comment"># try conditional compilation</span>
+<span class="token keyword">include</span><span class="token punctuation">(</span>CheckCXXCompilerFlag<span class="token punctuation">)</span>
+<span class="token function">CHECK_CXX_COMPILER_FLAG</span><span class="token punctuation">(</span><span class="token string">"-std=c++11"</span> COMPILER_SUPPORTS_CXX11<span class="token punctuation">)</span>
+<span class="token function">CHECK_CXX_COMPILER_FLAG</span><span class="token punctuation">(</span><span class="token string">"-std=c++0x"</span> COMPILER_SUPPORTS_CXX0X<span class="token punctuation">)</span>
+
+<span class="token comment"># check results and add flag</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>COMPILER_SUPPORTS_CXX11<span class="token punctuation">)</span><span class="token comment">#</span>
+    <span class="token keyword">set</span><span class="token punctuation">(</span><span class="token variable">CMAKE_CXX_FLAGS</span> <span class="token string">"<span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">CMAKE_CXX_FLAGS</span><span class="token punctuation">&#125;</span></span> -std=c++11"</span><span class="token punctuation">)</span>
+<span class="token keyword">elseif</span><span class="token punctuation">(</span>COMPILER_SUPPORTS_CXX0X<span class="token punctuation">)</span><span class="token comment">#</span>
+    <span class="token keyword">set</span><span class="token punctuation">(</span><span class="token variable">CMAKE_CXX_FLAGS</span> <span class="token string">"<span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">CMAKE_CXX_FLAGS</span><span class="token punctuation">&#125;</span></span> -std=c++0x"</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">message</span><span class="token punctuation">(</span>STATUS <span class="token string">"The compiler <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">CMAKE_CXX_COMPILER</span><span class="token punctuation">&#125;</span></span> has no C++11 support. Please use a different C++ compiler."</span><span class="token punctuation">)</span>
+<span class="token keyword">endif</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Add an executable</span>
+<span class="token keyword">add_executable</span><span class="token punctuation">(</span>hello_cpp11 main.cpp<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="概念-8"><a href="#概念-8" class="headerlink" title="概念"></a>概念</h4><h5 id="Checking-Compile-flags"><a href="#Checking-Compile-flags" class="headerlink" title="Checking Compile flags"></a>Checking Compile flags</h5><p>CMake支持尝试用你传递给函数<code>CHECK_CXX_COMPILER_FLAG</code>的任何标志来编译程序。然后，结果被存储在你传入的变量中。</p>
+<p><code>include(CheckCXXCompilerFlag)</code>告诉CMake包含这个函数，使其可以使用。</p>
+<h5 id="Adding-the-flag"><a href="#Adding-the-flag" class="headerlink" title="Adding the flag"></a>Adding the flag</h5><p>Once you have determined if the compile supports a flag, you can then use the <a target="_blank" rel="noopener" href="https://file+.vscode-resource.vscode-webview.net/c%3A/Users/yin/Desktop/cmake-examples/01-basic/G-compile-flags/">standard cmake methods</a> to add this flag to a target.</p>
+<h3 id="Set-CXX-Standard"><a href="#Set-CXX-Standard" class="headerlink" title="Set CXX Standard"></a>Set CXX Standard</h3><p>使用<code>CMAKE_CXX_STANDARD</code>变量来设置C++标准，需要的最小Cmake版本为v3.1。</p>
+<ul>
+<li><code>CmakeLists.txt</code>: Contains the CMake commands you wish to run</li>
+<li><code>main.cpp</code>:  A simple “Hello World” cpp file targeting C++11</li>
+</ul>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token comment"># Set the minimum version of CMake that can be used</span>
+<span class="token comment"># To find the cmake version run</span>
+<span class="token comment"># $ cmake --version</span>
+<span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.1</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Set the project name</span>
+<span class="token keyword">project</span> <span class="token punctuation">(</span>hello_cpp11<span class="token punctuation">)</span>
+
+<span class="token comment"># set the C++ standard to C++ 11</span>
+<span class="token keyword">set</span><span class="token punctuation">(</span><span class="token variable">CMAKE_CXX_STANDARD</span> <span class="token number">11</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Add an executable</span>
+<span class="token keyword">add_executable</span><span class="token punctuation">(</span>hello_cpp11 main.cpp<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="概念-9"><a href="#概念-9" class="headerlink" title="概念"></a>概念</h4><h5 id="Using-CXX-STANDARD-property"><a href="#Using-CXX-STANDARD-property" class="headerlink" title="Using CXX_STANDARD property"></a>Using CXX_STANDARD property</h5><p>设置<code>CMAKE_CXX_STANDARD</code>变量会导致所有targets的<code>CXX_STANDARD</code>属性被设置。这导致在编译时Cmake会设置合适的flag。</p>
+<blockquote>
+<p>The <code>CMAKE_CXX_STANDARD</code> variable falls back to the closest appropriate standard without a failure. For example, if you request <code>-std=gnu11</code> you may end up with <code>-std=gnu0x</code>.</p>
+<p>This can result in an unexpected failure at compile time.</p>
+</blockquote>
+<h3 id="Set-C-Standard"><a href="#Set-C-Standard" class="headerlink" title="Set C++ Standard"></a>Set C++ Standard</h3><p>使用<code>target_compile_features</code>函数来设置C++标准，需要的最小Cmake版本为v3.1。</p>
+<ul>
+<li><code>CmakeLists.txt</code>: Contains the CMake commands you wish to run</li>
+<li><code>main.cpp</code>:  A simple “Hello World” cpp file targeting C++11</li>
+</ul>
+<pre class="line-numbers language-cmake" data-language="cmake"><code class="language-cmake"><span class="token comment"># Set the minimum version of CMake that can be used</span>
+<span class="token comment"># To find the cmake version run</span>
+<span class="token comment"># $ cmake --version</span>
+<span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.1</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Set the project name</span>
+<span class="token keyword">project</span> <span class="token punctuation">(</span>hello_cpp11<span class="token punctuation">)</span>
+
+<span class="token comment"># Add an executable</span>
+<span class="token keyword">add_executable</span><span class="token punctuation">(</span>hello_cpp11 main.cpp<span class="token punctuation">)</span>
+
+<span class="token comment"># set the C++ standard to the appropriate standard for using auto</span>
+<span class="token keyword">target_compile_features</span><span class="token punctuation">(</span>hello_cpp11 <span class="token namespace">PUBLIC</span> <span class="token property">cxx_auto_type</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Print the list of known compile features for this version of CMake</span>
+<span class="token keyword">message</span><span class="token punctuation">(</span><span class="token string">"List of compile features: <span class="token interpolation"><span class="token punctuation">$&#123;</span><span class="token variable">CMAKE_CXX_COMPILE_FEATURES</span><span class="token punctuation">&#125;</span></span>"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="概念-10"><a href="#概念-10" class="headerlink" title="概念"></a>概念</h4><h5 id="Using-target-compile-features"><a href="#Using-target-compile-features" class="headerlink" title="Using target_compile_features"></a>Using target_compile_features</h5><blockquote>
+<p>Calling the <a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/v3.1/command/target_compile_features.html">target_compile_features</a> function on a target will look at the passed in feature and determine the correct compiler flag to use for your target.</p>
+</blockquote>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">qingyu</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://qingyu21.github.io/2021/10/27/cmake-examples-bi-ji-yi-ji-chu/">http://qingyu21.github.io/2021/10/27/cmake-examples-bi-ji-yi-ji-chu/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">qingyu</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/CMake/">
+                                    <span class="chip bg-color">CMake</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/10/28/cmake-examples-bi-ji-er-zi-xiang-mu/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="CMake Examples笔记（二）子项目">
+                        
+                        <span class="card-title">CMake Examples笔记（二）子项目</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-28
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/CMake/" class="post-category">
+                                    CMake
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CMake/">
+                        <span class="chip bg-color">CMake</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/10/22/word-wen-dang-zhong-cha-ru-gong-shi-de-fang-fa/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Word文档中插入公式的方法">
+                        
+                        <span class="card-title">Word文档中插入公式的方法</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Word/" class="post-category">
+                                    Word
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Word/">
+                        <span class="chip bg-color">Word</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2022</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank"></a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">33.5k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2021";
+                    var startMonth = "10";
+                    var startDate = "6";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/qingyu21" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:853623491@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=853623491" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 853623491" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

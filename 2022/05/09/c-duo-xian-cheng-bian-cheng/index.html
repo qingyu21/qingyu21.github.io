@@ -1,0 +1,2035 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="C++多线程编程, qingyu&#39;s blog">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>C++多线程编程 | qingyu&#39;s blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">qingyu&#39;s blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">qingyu&#39;s blog</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">C++多线程编程</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/C/">
+                                <span class="chip bg-color">C++</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+                                <span class="chip bg-color">多线程</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/C/" class="post-category">
+                                C++
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-05-09
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    6.5k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    33 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="C-多线程编程"><a href="#C-多线程编程" class="headerlink" title="C++多线程编程"></a>C++多线程编程</h1><h2 id="0-时间"><a href="#0-时间" class="headerlink" title="0. 时间"></a>0. 时间</h2><p>在<code>&lt;chrono&gt;</code>中，标准库提供了处理时间的设施。</p>
+<h3 id="0-1-特性"><a href="#0-1-特性" class="headerlink" title="0.1 特性"></a>0.1 特性</h3><p>明确区分<strong>时间点</strong>与<strong>时间段</strong>，明确区分不同的<strong>时间单位</strong>。</p>
+<ul>
+<li>事件点类型：<code>chrono::steady_clock::time_point </code></li>
+<li>时间段类型：<code>chrono::milliseconds，chrono::seconds，chrono::minutes</code></li>
+</ul>
+<p>方便的运算符重载：时间点+时间段&#x3D;时间点，时间点-时间点&#x3D;时间段</p>
+<h3 id="0-2-例子"><a href="#0-2-例子" class="headerlink" title="0.2 例子"></a>0.2 例子</h3><h4 id="1-时间点计算差值得到时间段"><a href="#1-时间点计算差值得到时间段" class="headerlink" title="1. 时间点计算差值得到时间段"></a>1. 时间点计算差值得到时间段</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">auto t0 &#x3D; std::chrono::steady_clock::now(); &#x2F;&#x2F; time_point类型
+for (volatile int i &#x3D; 0; i &lt; 10000000; i++); 
+auto t1 &#x3D; std::chrono::steady_clock::now();
+auto dt &#x3D; t1 - t0; &#x2F;&#x2F; duration类型
+int64_t ms &#x3D; std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(dt).count(); &#x2F;&#x2F; 统一单位<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-用double类型表示的时间段："><a href="#2-用double类型表示的时间段：" class="headerlink" title="2. 用double类型表示的时间段："></a>2. 用double类型表示的时间段：</h4><p><code>duration&lt;T, R&gt;</code> 表示用 <code>T</code> 类型表示，且时间单位是 <code>R</code>，<code>R</code> 省略不写就是秒，<code>std::milli</code> 就是毫秒，<code>std::micro</code> 就是微秒</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">using double_ms &#x3D; std::chrono::duration&lt;double, std::milli&gt;;
+double ms &#x3D; std::chrono::duration_cast&lt;double_ms&gt;(dt).count();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>（<code>seconds</code> 是 <code>duration&lt;int64_t&gt;</code> 的类型别名，<code>milliseconds</code> 是 <code>duration&lt;int64_t, std::milli&gt;</code> 的类型别名）</p>
+<h4 id="3-线程休眠"><a href="#3-线程休眠" class="headerlink" title="3. 线程休眠"></a>3. 线程休眠</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">std::this_thread::sleep_for(std::chrono::milliseconds(400)); &#x2F;&#x2F; 睡眠一个时间段
+&#x2F;&#x2F; 睡眠到一个时间点
+auto t &#x3D; std::chrono::steady_clock::now() + std::chrono::milliseconds(400);
+std::this_thread::sleep_until(t);
+std::this_thread::sleep(10ms+33us) &#x2F;&#x2F; 时间后缀 std::chrono_literals<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="1-线程"><a href="#1-线程" class="headerlink" title="1. 线程"></a>1. 线程</h2><h3 id="1-1-创建并等待线程结束"><a href="#1-1-创建并等待线程结束" class="headerlink" title="1.1 创建并等待线程结束"></a>1.1 创建并等待线程结束</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void download(std::string file) &#123;
+    for (int i &#x3D; 0; i &lt; 10; i++) &#123;
+        std::cout &lt;&lt; &quot;Downloading &quot; &lt;&lt; file
+                  &lt;&lt; &quot; (&quot; &lt;&lt; i * 10 &lt;&lt; &quot;%)...&quot; &lt;&lt; std::endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(400));
+    &#125;
+    std::cout &lt;&lt; &quot;Download complete: &quot; &lt;&lt; file &lt;&lt; std::endl;
+&#125;
+
+void interact() &#123;
+    std::string name;
+    std::cin &gt;&gt; name;
+    std::cout &lt;&lt; &quot;Hi, &quot; &lt;&lt; name &lt;&lt; std::endl;
+&#125;
+
+int main() &#123;
+    &#x2F;&#x2F; 启动一个线程
+    std::thread t1([&amp;] &#123;
+        download(&quot;hello.zip&quot;);
+    &#125;);
+    interact();
+    std::cout &lt;&lt; &quot;Waiting for child thread...&quot; &lt;&lt; std::endl;
+    t1.join(); &#x2F;&#x2F; 如果没有这一行，那么还没等子线程结束就退出了 
+    std::cout &lt;&lt; &quot;Child thread exited!&quot; &lt;&lt; std::endl;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="1-2-管理线程生命周期"><a href="#1-2-管理线程生命周期" class="headerlink" title="1.2 管理线程生命周期"></a>1.2 管理线程生命周期</h3><h4 id="1-线程RAII"><a href="#1-线程RAII" class="headerlink" title="1. 线程RAII"></a>1. 线程RAII</h4><p>作为C++类，thread自定义了<strong>解构函数</strong>，删除了<strong>拷贝构造&#x2F;函数</strong>，但是提供了<strong>移动构造&#x2F;赋值函数</strong>。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void myfunc() &#123;
+    std::thread t1([&amp;] &#123;
+        download(&quot;hello.zip&quot;);
+    &#125;);
+    &#x2F;&#x2F; 退出函数体时，会销毁 t1 线程的句柄！
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-detach"><a href="#2-detach" class="headerlink" title="2. detach()"></a>2. detach()</h4><p>可以避免线程被销毁，调用<code>detach()</code>意味着线程的生命周期<strong>不再由当前</strong> <strong>std::thread</strong> <strong>对象管理</strong>，而是在线程退出以后自动销毁自己。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void myfunc() &#123;
+    std::thread t1([&amp;] &#123;
+        download(&quot;hello.zip&quot;);
+    &#125;);
+    t1.detach();
+    &#x2F;&#x2F; t1 所代表的线程被分离了，不再随 t1 对象销毁
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="3-将即将销毁的线程移动到全局线程池"><a href="#3-将即将销毁的线程移动到全局线程池" class="headerlink" title="3. 将即将销毁的线程移动到全局线程池"></a>3. 将即将销毁的线程移动到全局线程池</h4><p><code>detach()</code> 的问题是进程退出时候不会等待所有子线程执行完毕。所以另一种解法是把 t1 对象<strong>移动</strong>到一个全局变量去，从而延长其生命周期到 <code>myfunc</code>() 函数体外。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">std::vector&lt;std::thread&gt; pool;
+
+void myfunc() &#123;
+    std::thread t1([&amp;] &#123;
+        download(&quot;hello.zip&quot;);
+    &#125;);
+    &#x2F;&#x2F; 移交控制权到全局的 pool 列表，以延长 t1 的生命周期
+    pool.push_back(std::move(t1));
+&#125;
+
+int main() &#123;
+    myfunc();
+    interact();
+    for (auto &amp;t: pool) t.join();  &#x2F;&#x2F; 等待池里的线程全部执行完毕
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="4-将线程池封装为类"><a href="#4-将线程池封装为类" class="headerlink" title="4. 将线程池封装为类"></a>4. 将线程池封装为类</h4><p>但是需要在 main 里面手动 join 全部线程还是有点麻烦，我们可以自定义一个类 <code>ThreadPool</code>，并用他创建一个全局变量，其解构函数会在 main 退出后自动调用。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class ThreadPool &#123;
+    std::vector&lt;std::thread&gt; m_pool;
+
+public:
+    void push_back(std::thread thr) &#123;
+        m_pool.push_back(std::move(thr));
+    &#125;
+
+    ~ThreadPool() &#123;                      &#x2F;&#x2F; main 函数退出后会自动调用
+        for (auto &amp;t: m_pool) t.join();  &#x2F;&#x2F; 等待池里的线程全部执行完毕
+    &#125;
+&#125;;
+
+ThreadPool tpool;
+
+void myfunc() &#123;
+    std::thread t1([&amp;] &#123;
+        download(&quot;hello.zip&quot;);
+    &#125;);
+    &#x2F;&#x2F; 移交控制权到全局的 pool 列表，以延长 t1 的生命周期
+    tpool.push_back(std::move(t1));
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="5-jthread"><a href="#5-jthread" class="headerlink" title="5. jthread"></a>5. jthread</h4><p>C++20 引入了 <code>std::jthread</code> 类，和 std::thread 不同在于：他的解构函数里会自动调用 join() 函数，从而保证 pool 解构时会自动等待全部线程执行完毕。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; ~jthread() 解构函数里会自动调用 join()，如果 joinable() 的话
+std::vector&lt;std::jthread&gt; pool;
+
+void myfunc() &#123;
+    std::jthread t1([&amp;] &#123;
+        download(&quot;hello.zip&quot;);
+    &#125;);
+    &#x2F;&#x2F; 移交控制权到全局的 pool 列表，以延长 t1 的生命周期
+    pool.push_back(std::move(t1));
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="2-async"><a href="#2-async" class="headerlink" title="2. async"></a>2. async</h2><h3 id="2-1-异步执行"><a href="#2-1-异步执行" class="headerlink" title="2.1 异步执行"></a>2.1 异步执行</h3><p><code>async()</code>用于启动可异步执行的任务。<code>std::async</code>接受一个带返回值的 lambda，自身返回一个 std::future 对象。<code>get()</code>获取返回值，如果没有执行完毕，则阻塞。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int main() &#123;
+    std::future&lt;int&gt; fret &#x3D; std::async([&amp;] &#123;
+        return download(&quot;hello.zip&quot;); 
+    &#125;);
+    interact();
+    int ret &#x3D; fret.get(); &#x2F;&#x2F; 如果此时 download 还没完成，会等待 download 完成，并获取 download 的返回值。
+    std::cout &lt;&lt; &quot;Download result: &quot; &lt;&lt; ret &lt;&lt; std::endl;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>wait()</code>可以等待他执行完，但是不会返回其值。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int main() &#123;
+    std::future&lt;int&gt; fret &#x3D; std::async([&amp;] &#123;
+        return download(&quot;hello.zip&quot;); 
+    &#125;);
+    interact();
+    std::cout &lt;&lt; &quot;Waiting for download complete...&quot; &lt;&lt; std::endl;
+    fret.wait(); &#x2F;&#x2F; 
+    std::cout &lt;&lt; &quot;Wait returned!&quot; &lt;&lt; std::endl;
+    int ret &#x3D; fret.get();
+    std::cout &lt;&lt; &quot;Download result: &quot; &lt;&lt; ret &lt;&lt; std::endl;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>wait_for()</code>可以指定一个最长等待时间，用 chrono 里的类表示单位。他会返回一个 std::future_status 表示等待是否成功。<code>future_status::timeout</code>或者<code>future_status::ready</code>。还有<code>wait_until()</code>其参数是一个时间点。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int main() &#123;
+    std::future&lt;int&gt; fret &#x3D; std::async([&amp;] &#123;
+        return download(&quot;hello.zip&quot;); 
+    &#125;);
+    interact();
+    while (true) &#123;
+        std::cout &lt;&lt; &quot;Waiting for download complete...&quot; &lt;&lt; std::endl;
+        auto stat &#x3D; fret.wait_for(std::chrono::milliseconds(1000));
+        if (stat &#x3D;&#x3D; std::future_status::ready) &#123;
+            std::cout &lt;&lt; &quot;Future is ready!!&quot; &lt;&lt; std::endl;
+            break;
+        &#125; else &#123;
+            std::cout &lt;&lt; &quot;Future not ready!!&quot; &lt;&lt; std::endl;
+        &#125;
+    &#125;
+    int ret &#x3D; fret.get();
+    std::cout &lt;&lt; &quot;Download result: &quot; &lt;&lt; ret &lt;&lt; std::endl;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-2-推迟执行"><a href="#2-2-推迟执行" class="headerlink" title="2.2 推迟执行"></a>2.2 推迟执行</h3><p><code>std::async</code> 的第一个参数可以设为 <code>std::launch::deferred</code>，这时不会创建一个线程来执行，他只会把 lambda 函数体内的运算<strong>推迟</strong>到 future 的 <code>get()</code> 被调用时。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int main() &#123;
+    std::future&lt;int&gt; fret &#x3D; std::async(std::launch::deferred, [&amp;] &#123;
+        return download(&quot;hello.zip&quot;); 
+    &#125;);
+    interact();
+    int ret &#x3D; fret.get();
+    std::cout &lt;&lt; &quot;Download result: &quot; &lt;&lt; ret &lt;&lt; std::endl;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-3-async-的底层实现：future-x2F-promise"><a href="#2-3-async-的底层实现：future-x2F-promise" class="headerlink" title="2.3 async()的底层实现：future&#x2F;promise"></a>2.3 async()的底层实现：future&#x2F;promise</h3><p>如果不想让 std::async 帮你自动创建线程，想要手动创建线程，可以直接用 std::promise。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int main() &#123;
+    std::promise&lt;int&gt; pret;
+    std::thread t1([&amp;] &#123;
+        auto ret &#x3D; download(&quot;hello.zip&quot;);
+        pret.set_value(ret); &#x2F;&#x2F; 设置返回值
+    &#125;);
+    std::future&lt;int&gt; fret &#x3D; pret.get_future();
+
+    interact();
+    int ret &#x3D; fret.get(); &#x2F;&#x2F; 等待并获取线程返回值
+    std::cout &lt;&lt; &quot;Download result: &quot; &lt;&lt; ret &lt;&lt; std::endl;
+
+    t1.join();
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>future 为了三五法则，删除了拷贝构造&#x2F;赋值函数。如果需要浅拷贝，实现共享同一个 future 对象，可以用 <em>std::shared_future</em>。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int main() &#123;
+    std::shared_future&lt;void&gt; fret &#x3D; std::async([&amp;] &#123;
+        download(&quot;hello.zip&quot;); 
+    &#125;);
+    auto fret2 &#x3D; fret;
+    auto fret3 &#x3D; fret;
+    interact();
+    fret3.wait();
+    std::cout &lt;&lt; &quot;Download completed&quot; &lt;&lt; std::endl;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="3-mutex"><a href="#3-mutex" class="headerlink" title="3. mutex"></a>3. mutex</h2><p><code>&lt;mutex&gt;</code></p>
+<h3 id="3-1-数据竞争"><a href="#3-1-数据竞争" class="headerlink" title="3.1 数据竞争"></a>3.1 数据竞争</h3><p><code>vector</code>不是线程安全的容器，同时访问会出现数据竞争（data-race）。（double free）</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int main() &#123;
+    std::vector&lt;int&gt; arr;
+    std::thread t1([&amp;] &#123;
+        for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+            arr.push_back(1);
+        &#125;
+    &#125;);
+    std::thread t2([&amp;] &#123;
+        for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+            arr.push_back(2);
+        &#125;
+    &#125;);
+    t1.join();
+    t2.join();
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-2-mutex、lock-、unlock"><a href="#3-2-mutex、lock-、unlock" class="headerlink" title="3.2 mutex、lock()、unlock()"></a>3.2 mutex、lock()、unlock()</h3><p>调用 std::mutex 的 lock() 时，会检测 mutex 是否已经<strong>上锁</strong>:</p>
+<ul>
+<li>如果没有<strong>锁定</strong>，则对 mutex 进行<strong>上锁</strong>。</li>
+<li>如果已经<strong>锁定</strong>，则陷入等待，直到 mutex 被另一个线程<strong>解锁</strong>后，才再次<strong>上锁</strong>。</li>
+</ul>
+<p>而调用 unlock() 则会进行解锁操作。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int main() &#123;
+    std::vector&lt;int&gt; arr;
+    std::mutex mtx;
+    std::thread t1([&amp;] &#123;
+        for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+            mtx.lock(); &#x2F;&#x2F; 
+            arr.push_back(1);
+            mtx.unlock(); &#x2F;&#x2F; 
+        &#125;
+    &#125;);
+    std::thread t2([&amp;] &#123;
+        for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+            mtx.lock(); &#x2F;&#x2F; 
+            arr.push_back(2);
+            mtx.unlock(); &#x2F;&#x2F;
+        &#125;
+    &#125;);
+    t1.join();
+    t2.join();
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-3-std-lock-guard：符合-RAII-思想的上锁和解锁"><a href="#3-3-std-lock-guard：符合-RAII-思想的上锁和解锁" class="headerlink" title="3.3 std::lock_guard：符合 RAII 思想的上锁和解锁"></a>3.3 std::lock_guard：符合 RAII 思想的上锁和解锁</h3><p>根据 RAII 思想，可将锁的持有视为资源，上锁视为锁的获取，解锁视为锁的释放。std::lock_guard 就是这样一个工具类，他的构造函数里会调用 <code>mtx.lock()</code>，解构函数会调用 <code>mtx.unlock()</code>。可以避免不小心忘记解锁。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int main() &#123;
+    std::vector&lt;int&gt; arr;
+    std::mutex mtx;
+    std::thread t1([&amp;] &#123;
+        for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+            std::lock_guard grd(mtx); &#x2F;&#x2F; 
+            arr.push_back(1);
+        &#125;
+    &#125;);
+    std::thread t2([&amp;] &#123;
+        for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+            std::lock_guard grd(mtx); &#x2F;&#x2F; 
+            arr.push_back(2);
+        &#125;
+    &#125;);
+    t1.join();
+    t2.join();
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-4-std-unique-lock：也符合-RAII-思想，但自由度更高"><a href="#3-4-std-unique-lock：也符合-RAII-思想，但自由度更高" class="headerlink" title="3.4 std::unique_lock：也符合 RAII 思想，但自由度更高"></a>3.4 std::unique_lock：也符合 RAII 思想，但自由度更高</h3><h4 id="1-直接上锁"><a href="#1-直接上锁" class="headerlink" title="1. 直接上锁"></a>1. 直接上锁</h4><p>lock_guard有时候不太方便，unique_lock额外存储了一个 flag 表示是否已经被释放。他会在解构检测这个 flag，如果没有释放，则调用 unlock()，否则不调用。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int main() &#123;
+    std::vector&lt;int&gt; arr;
+    std::mutex mtx;
+    std::thread t1([&amp;] &#123;
+        for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+            std::unique_lock grd(mtx);
+            arr.push_back(1);
+        &#125;
+    &#125;);
+    std::thread t2([&amp;] &#123;
+        for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+            std::unique_lock grd(mtx);
+            arr.push_back(2);
+            grd.unlock(); &#x2F;&#x2F; 提前解锁
+            printf(&quot;outside of lock\n&quot;);
+            &#x2F;&#x2F; grd.lock();  &#x2F;&#x2F; 如果需要，还可以重新上锁
+        &#125;
+    &#125;);
+    t1.join();
+    t2.join();
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-延迟上锁"><a href="#2-延迟上锁" class="headerlink" title="2. 延迟上锁"></a>2. 延迟上锁</h4><p>可以用 std::defer_lock 作为unique_lock的参数，指定了这个参数的话，std::unique_lock 不会在构造函数中调用 mtx.lock()，需要之后再手动调用 <code>grd.lock()</code> 才能上锁。：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int main() &#123;
+    std::vector&lt;int&gt; arr;
+    std::mutex mtx;
+    std::thread t1([&amp;] &#123;
+        for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+            std::unique_lock grd(mtx);
+            arr.push_back(1);
+        &#125;
+    &#125;);
+    std::thread t2([&amp;] &#123;
+        for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+            std::unique_lock grd(mtx, std::defer_lock); &#x2F;&#x2F; 
+            printf(&quot;before the lock\n&quot;);
+            grd.lock(); &#x2F;&#x2F; 
+            arr.push_back(2);
+            grd.unlock(); &#x2F;&#x2F; 
+            printf(&quot;outside of lock\n&quot;);
+        &#125;
+    &#125;);
+    t1.join();
+    t2.join();
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-5-多个对象，建议每个对象一个锁"><a href="#3-5-多个对象，建议每个对象一个锁" class="headerlink" title="3.5 多个对象，建议每个对象一个锁"></a>3.5 多个对象，建议每个对象一个锁</h3><p>不同的对象，各有一个 mutex，独立地上锁，可以避免不必要的锁定，提升高并发时的性能。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int main() &#123;
+    std::vector&lt;int&gt; arr1;
+    std::mutex mtx1;
+
+    std::vector&lt;int&gt; arr2;
+    std::mutex mtx2;
+
+    std::thread t1([&amp;] &#123;
+        for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+            &#123;
+                std::lock_guard grd(mtx1);
+                arr1.push_back(1);
+            &#125;
+
+            &#123;
+                std::lock_guard grd(mtx2);
+                arr2.push_back(1);
+            &#125;
+        &#125;
+    &#125;);
+    std::thread t2([&amp;] &#123;
+        for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+            &#123;
+                std::lock_guard grd(mtx1);
+                arr1.push_back(2);
+            &#125;
+
+            &#123;
+                std::lock_guard grd(mtx2);
+                arr2.push_back(2);
+            &#125;
+        &#125;
+    &#125;);
+    t1.join();
+    t2.join();
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-6-try-lock-：如果上锁失败，不要等待"><a href="#3-6-try-lock-：如果上锁失败，不要等待" class="headerlink" title="3.6 try_lock() ：如果上锁失败，不要等待"></a>3.6 try_lock() ：如果上锁失败，不要等待</h3><p><code>try_lock()</code>是无阻塞的，他在上锁失败时不会陷入等待，而是直接返回 false；如果上锁成功，则会返回 true。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int main() &#123;
+    if (mtx1.try_lock()) &#x2F;&#x2F; true
+        printf(&quot;succeed\n&quot;);
+    else
+        printf(&quot;failed\n&quot;);
+
+    if (mtx1.try_lock()) &#x2F;&#x2F; false
+        printf(&quot;succeed\n&quot;);
+    else
+        printf(&quot;failed\n&quot;);
+
+    mtx1.unlock();
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-7-try-lock-for-：只等待一段时间"><a href="#3-7-try-lock-for-：只等待一段时间" class="headerlink" title="3.7 try_lock_for()：只等待一段时间"></a>3.7 try_lock_for()：只等待一段时间</h3><p>类似的还有接受时间点的 <code>try_lock_until()</code>。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">std::timed_mutex mtx1; &#x2F;&#x2F; 
+
+int main() &#123;
+    if (mtx1.try_lock_for(std::chrono::milliseconds(500))) &#x2F;&#x2F; 获得锁，返回true
+        printf(&quot;succeed\n&quot;);
+    else
+        printf(&quot;failed\n&quot;);
+
+    if (mtx1.try_lock_for(std::chrono::milliseconds(500))) &#x2F;&#x2F; 等待0.5秒，如果失败就返回false
+        printf(&quot;succeed\n&quot;);
+    else
+        printf(&quot;failed\n&quot;);
+
+    mtx1.unlock();
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-8-std-unique-lock的参数"><a href="#3-8-std-unique-lock的参数" class="headerlink" title="3.8 std::unique_lock的参数"></a>3.8 std::unique_lock的参数</h3><h4 id="1-用std-try-to-lock作为参数"><a href="#1-用std-try-to-lock作为参数" class="headerlink" title="1. 用std::try_to_lock作为参数"></a>1. 用std::try_to_lock作为参数</h4><p>和无参数相比，他会调用 <code>mtx1.try_lock()</code> 而不是 <code>mtx1.lock()</code>。之后，可以用 <code>grd.owns_lock()</code> 判断是否上锁成功。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int main() &#123;
+    std::mutex mtx;
+    std::thread t1([&amp;] &#123;
+        std::unique_lock grd(mtx, std::try_to_lock); &#x2F;&#x2F; 
+        if (grd.owns_lock()) &#x2F;&#x2F; 判断是否成功上锁
+            printf(&quot;t1 success\n&quot;);
+        else
+            printf(&quot;t1 failed\n&quot;);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    &#125;);
+
+    std::thread t2([&amp;] &#123;
+        std::unique_lock grd(mtx, std::try_to_lock);
+        if (grd.owns_lock())
+            printf(&quot;t2 success\n&quot;);
+        else
+            printf(&quot;t2 failed\n&quot;);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    &#125;);
+
+    t1.join();
+    t2.join();
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-用std-adopt-lock作为参数"><a href="#2-用std-adopt-lock作为参数" class="headerlink" title="2. 用std::adopt_lock作为参数"></a>2. 用std::adopt_lock作为参数</h4><p>如果当前 mutex 已经上锁了，但是之后仍然希望用 RAII 思想在解构时候自动调用 unlock()，可以用 std::adopt_lock 作为 std::unique_lock 或 std::lock_guard 的第二个参数，这时他们会默认 mtx 已经上锁。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int main() &#123;
+    std::mutex mtx;
+    std::thread t1([&amp;] &#123;
+        std::unique_lock grd(mtx);
+        printf(&quot;t1 owns the lock\n&quot;);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    &#125;);
+
+    std::thread t2([&amp;] &#123;
+        mtx.lock();
+        std::unique_lock grd(mtx, std::adopt_lock);
+        printf(&quot;t2 owns the lock\n&quot;);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    &#125;);
+
+    t1.join();
+    t2.join();
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-9-std-unique-lock-和-std-mutex-具有同样的接口"><a href="#3-9-std-unique-lock-和-std-mutex-具有同样的接口" class="headerlink" title="3.9 std::unique_lock 和 std::mutex 具有同样的接口"></a>3.9 std::unique_lock <strong>和</strong> <strong>std::mutex</strong> <strong>具有同样的接口</strong></h3><p>这种只要具有某些指定名字的成员函数，就判断一个类是否满足某些功能的思想，在 Python 称为鸭子类型，而 C++ 称为 concept（概念）。比起虚函数和动态多态的接口抽象，concept 使实现和接口更加解耦合且没有性能损失。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int main() &#123;
+    std::mutex mtx;
+    std::thread t1([&amp;] &#123;
+        std::unique_lock grd(mtx, std::defer_lock);
+        std::lock_guard grd2(grd);
+        printf(&quot;t1 owns the lock\n&quot;);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    &#125;);
+
+    std::thread t2([&amp;] &#123;
+        std::unique_lock grd(mtx, std::defer_lock);
+        std::lock_guard grd2(grd);
+        printf(&quot;t2 owns the lock\n&quot;);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    &#125;);
+
+    t1.join();
+    t2.join();
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="4-死锁"><a href="#4-死锁" class="headerlink" title="4. 死锁"></a>4. 死锁</h2><h3 id="4-1-同时锁住多个mutex"><a href="#4-1-同时锁住多个mutex" class="headerlink" title="4.1 同时锁住多个mutex"></a>4.1 同时锁住多个mutex</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">std::thread t1([&amp;] &#123;
+    for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+        mtx1.lock(); &#x2F;&#x2F; 
+        mtx2.lock();
+        mtx2.unlock();
+        mtx1.unlock();
+    &#125;
+&#125;);
+std::thread t2([&amp;] &#123;
+    for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+        mtx2.lock(); &#x2F;&#x2F; 
+        mtx1.lock();
+        mtx1.unlock();
+        mtx2.unlock();
+    &#125;
+&#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="1-永远不要同时持有两个锁"><a href="#1-永远不要同时持有两个锁" class="headerlink" title="1. 永远不要同时持有两个锁"></a>1. 永远不要同时持有两个锁</h4><p>如果一个线程永远不要同时持有两个锁，这样可以避免死锁。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">std::thread t1([&amp;] &#123;
+    for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+        mtx1.lock(); &#x2F;&#x2F; 
+        mtx1.unlock(); &#x2F;&#x2F; 
+        mtx2.lock();
+        mtx2.unlock();
+    &#125;
+&#125;);
+std::thread t2([&amp;] &#123;
+    for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+        mtx2.lock();
+        mtx2.unlock();
+        mtx1.lock();
+        mtx1.unlock();
+    &#125;
+&#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-保证双方上锁顺序一致"><a href="#2-保证双方上锁顺序一致" class="headerlink" title="2. 保证双方上锁顺序一致"></a>2. 保证双方上锁顺序一致</h4><p>保证双方上锁顺序一致也可以避免死锁。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">std::thread t1([&amp;] &#123;
+    for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+        mtx1.lock(); &#x2F;&#x2F; 
+        mtx2.lock();
+        mtx2.unlock();
+        mtx1.unlock();
+    &#125;
+&#125;);
+std::thread t2([&amp;] &#123;
+    for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+        mtx1.lock(); &#x2F;&#x2F; 
+        mtx2.lock();
+        mtx2.unlock();
+        mtx1.unlock();
+    &#125;
+&#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="3-用std-lock同时上多个锁"><a href="#3-用std-lock同时上多个锁" class="headerlink" title="3. 用std::lock同时上多个锁"></a>3. 用<code>std::lock</code>同时上多个锁</h4><p>它接受任意多个mutex作为参数，并且它保证在无论任意线程中调用的顺序是否相同，都不会产生死锁问题。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">std::mutex mtx1;
+   std::mutex mtx2;
+
+   std::thread t1([&amp;] &#123;
+       for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+           std::lock(mtx1, mtx2); &#x2F;&#x2F; 
+           mtx1.unlock();
+           mtx2.unlock();
+       &#125;
+   &#125;);
+   std::thread t2([&amp;] &#123;
+       for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+           std::lock(mtx2, mtx1);
+           mtx2.unlock();
+           mtx1.unlock();
+       &#125;
+   &#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="4-std-lock的RAII版本：std-scoped-lock"><a href="#4-std-lock的RAII版本：std-scoped-lock" class="headerlink" title="4.std::lock的RAII版本：std::scoped_lock"></a>4.<code>std::lock</code>的RAII版本：<code>std::scoped_lock</code></h4><p>和<code>std::lock_guard</code>相对应，只不过它可以同时对多个mutex上锁。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">std::thread t1([&amp;] &#123;
+    for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+        std::scoped_lock grd(mtx1, mtx2);
+        &#x2F;&#x2F; do something
+    &#125;
+&#125;);
+std::thread t2([&amp;] &#123;
+    for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+        std::scoped_lock grd(mtx2, mtx1);
+        &#x2F;&#x2F; do something
+    &#125;
+&#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="4-2-同一个线程重复调用lock-也会造成死锁"><a href="#4-2-同一个线程重复调用lock-也会造成死锁" class="headerlink" title="4.2 同一个线程重复调用lock()也会造成死锁"></a>4.2 同一个线程重复调用lock()也会造成死锁</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void other() &#123;
+    mtx1.lock();
+    &#x2F;&#x2F; do something
+    mtx1.unlock();
+&#125;
+
+void func() &#123;
+    mtx1.lock();
+    other();
+    mtx1.unlock();
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="1-other里不要再上锁"><a href="#1-other里不要再上锁" class="headerlink" title="1. other里不要再上锁"></a>1. other里不要再上锁</h4><p>遇到这种情况最好是把 other 里的 lock() 去掉，并在其文档中说明：“other 不是线程安全的，调用本函数之前需要保证某 mutex 已经上锁。”</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;&#x2F; NOTE: please lock mtx1 before calling other()
+void other() &#123;
+    &#x2F;&#x2F; do something
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-改用std-recursive-mutex"><a href="#2-改用std-recursive-mutex" class="headerlink" title="2. 改用std::recursive_mutex"></a>2. 改用<code>std::recursive_mutex</code></h4><p>他会自动判断是不是同一个线程 <code>lock()</code> 了多次同一个锁，如果是则让计数器加1，之后 <code>unlock()</code> 会让计数器减1，减到0时才真正解锁。但是相比普通的 std::mutex 有一定性能损失。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">std::recursive_mutex mtx1;
+
+void other() &#123;
+    mtx1.lock();
+    &#x2F;&#x2F; do something
+    mtx1.unlock();
+&#125;
+
+void func() &#123;
+    mtx1.lock();
+    other();
+    mtx1.unlock();
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="5-数据结构"><a href="#5-数据结构" class="headerlink" title="5. 数据结构"></a>5. 数据结构</h2><h3 id="5-1-多线程环境中使用std-vector"><a href="#5-1-多线程环境中使用std-vector" class="headerlink" title="5.1 多线程环境中使用std::vector"></a>5.1 多线程环境中使用<code>std::vector</code></h3><p>可以封装一个线程安全的vector。（代理模式）</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class MTVector &#123;
+    std::vector&lt;int&gt; m_arr;
+    mutable std::mutex m_mtx;
+
+public:
+    void push_back(int val) &#123;
+        m_mtx.lock();
+        m_arr.push_back(val);
+        m_mtx.unlock();
+    &#125;
+
+    size_t size() const &#123;
+        m_mtx.lock(); &#x2F;&#x2F; 然而这里因为修改了mutex，导致和const冲突了，所以需要令m_mtx是mutable的
+        size_t ret &#x3D; m_arr.size();
+        m_mtx.unlock();
+        return ret;
+    &#125;
+&#125;;
+
+int main() &#123;
+    MTVector arr;
+
+    std::thread t1([&amp;] () &#123;
+        for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+            arr.push_back(i);
+        &#125;
+    &#125;);
+
+    std::thread t2([&amp;] () &#123;
+        for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+            arr.push_back(1000 + i);
+        &#125;
+    &#125;);
+
+    t1.join();
+    t2.join();
+
+    std::cout &lt;&lt; arr.size() &lt;&lt; std::endl;
+
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="5-2-读写锁：std-shared-mutex"><a href="#5-2-读写锁：std-shared-mutex" class="headerlink" title="5.2 读写锁：std::shared_mutex"></a>5.2 读写锁：std::shared_mutex</h3><p>场景：读可以共享，写必须独占，且写和读不能共存。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class MTVector &#123;
+    std::vector&lt;int&gt; m_arr;
+    mutable std::shared_mutex m_mtx; &#x2F;&#x2F; 读写锁
+
+public:
+    void push_back(int val) &#123;
+        m_mtx.lock(); &#x2F;&#x2F; 告知为写锁
+        m_arr.push_back(val);
+        m_mtx.unlock(); &#x2F;&#x2F; 
+    &#125;
+
+    size_t size() const &#123;
+        m_mtx.lock_shared(); &#x2F;&#x2F; 告知为读锁
+        size_t ret &#x3D; m_arr.size();
+        m_mtx.unlock_shared(); &#x2F;&#x2F; 
+        return ret;
+    &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="5-3-std-shared-lock：符合RAII思想的lock-shared"><a href="#5-3-std-shared-lock：符合RAII思想的lock-shared" class="headerlink" title="5.3 std::shared_lock：符合RAII思想的lock_shared()"></a>5.3 <code>std::shared_lock</code>：符合RAII思想的<code>lock_shared()</code></h3><p>正如 <code>std::unique_lock</code> 针对 <code>lock()</code>，也可以用 <code>std::shared_lock</code> 针对 <code>lock_shared()</code>。这样就可以在函数体退出时自动调用 <code>unlock_shared()</code>，更加安全了。</p>
+<p>（<code>std::shared_lock</code>同样支持<code>defer_lock</code>做参数、<code>owns_lock()</code>判断等） </p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class MTVector &#123;
+    std::vector&lt;int&gt; m_arr;
+    mutable std::shared_mutex m_mtx; &#x2F;&#x2F; 
+
+public:
+    void push_back(int val) &#123;
+        std::unique_lock grd(m_mtx); &#x2F;&#x2F; 
+        m_arr.push_back(val);
+    &#125;
+
+    size_t size() const &#123;
+        std::shared_lock grd(m_mtx); &#x2F;&#x2F; 
+        return m_arr.size();
+    &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="5-4-只需一次性上锁，且符合RAII思想：访问者模式"><a href="#5-4-只需一次性上锁，且符合RAII思想：访问者模式" class="headerlink" title="5.4 只需一次性上锁，且符合RAII思想：访问者模式"></a>5.4 只需一次性上锁，且符合RAII思想：访问者模式</h3><p>将<strong>存储</strong>数据的类和<strong>访问</strong>数据的类分开。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class MTVector &#123;
+    std::vector&lt;int&gt; m_arr;
+    std::mutex m_mtx;
+
+public:
+    class Accessor &#123; &#x2F;&#x2F; 用于访问数据的类
+        MTVector &amp;m_that; &#x2F;&#x2F; 
+        std::unique_lock&lt;std::mutex&gt; m_guard; &#x2F;&#x2F; 
+
+    public:
+        Accessor(MTVector &amp;that) &#x2F;&#x2F; access()中调用了这个构造函数
+            : m_that(that), m_guard(that.m_mtx) &#x2F;&#x2F; 访问对象初始化时上锁，析构时解锁
+        &#123;&#125;
+
+        void push_back(int val) const &#123;
+            return m_that.m_arr.push_back(val);
+        &#125;
+
+        size_t size() const &#123;
+            return m_that.m_arr.size();
+        &#125;
+    &#125;;
+
+    Accessor access() &#123;
+        return &#123;*this&#125;; &#x2F;&#x2F; 利用一个MTVector初始化一个Accessor
+    &#125;
+&#125;;
+
+int main() &#123;
+    MTVector arr;
+
+    std::thread t1([&amp;] () &#123;
+        auto axr &#x3D; arr.access(); &#x2F;&#x2F; 用于访问的类，避免了低效的重复加锁
+        for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+            axr.push_back(i);
+        &#125;
+    &#125;);
+
+    std::thread t2([&amp;] () &#123;
+        auto axr &#x3D; arr.access();
+        for (int i &#x3D; 0; i &lt; 1000; i++) &#123;
+            axr.push_back(1000 + i);
+        &#125;
+    &#125;);
+
+    t1.join();
+    t2.join();
+
+    std::cout &lt;&lt; arr.access().size() &lt;&lt; std::endl;
+
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="5-条件变量"><a href="#5-条件变量" class="headerlink" title="5. 条件变量"></a>5. 条件变量</h2><p><code>&lt;condition_variable&gt;</code></p>
+<h3 id="5-1-线程等待被唤醒"><a href="#5-1-线程等待被唤醒" class="headerlink" title="5.1 线程等待被唤醒"></a>5.1 线程等待被唤醒</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">std::condition_variable cv; &#x2F;&#x2F; 
+std::mutex mtx; &#x2F;&#x2F; 需要搭配mutex一起使用
+
+std::thread t1([&amp;] &#123;
+    std::unique_lock lck(mtx);
+    cv.wait(lck); &#x2F;&#x2F; 会让当前线程陷入等待，并释放锁
+
+    std::cout &lt;&lt; &quot;t1 is awake&quot; &lt;&lt; std::endl;
+&#125;);
+
+std::this_thread::sleep_for(std::chrono::milliseconds(400));
+
+std::cout &lt;&lt; &quot;notifying...&quot; &lt;&lt; std::endl;
+cv.notify_one();  &#x2F;&#x2F; 会唤醒那个陷入等待的线程
+
+t1.join();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="5-2-等待某一条件成真"><a href="#5-2-等待某一条件成真" class="headerlink" title="5.2 等待某一条件成真"></a>5.2 等待某一条件成真</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">std::condition_variable cv;
+std::mutex mtx;
+bool ready &#x3D; false; &#x2F;&#x2F; 某个外部条件
+
+std::thread t1([&amp;] &#123;
+    std::unique_lock lck(mtx);
+    cv.wait(lck, [&amp;] &#123; return ready; &#125;); &#x2F;&#x2F; 被notify后，只有第二个expr为真（满足条件），才会真正唤醒
+
+    std::cout &lt;&lt; &quot;t1 is awake&quot; &lt;&lt; std::endl;
+&#125;);
+
+std::cout &lt;&lt; &quot;notifying not ready&quot; &lt;&lt; std::endl;
+cv.notify_one();  &#x2F;&#x2F; useless now, since ready &#x3D; false
+
+ready &#x3D; true;
+std::cout &lt;&lt; &quot;notifying ready&quot; &lt;&lt; std::endl;
+cv.notify_one();  &#x2F;&#x2F; awakening t1, since ready &#x3D; true
+
+t1.join();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="5-3-多个等待者"><a href="#5-3-多个等待者" class="headerlink" title="5.3 多个等待者"></a>5.3 多个等待者</h3><p>之所以条件变量需要一个unique_lock作为参数，是因为要保证多个线程被唤醒时，只有一个能启动。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int main() &#123;
+    std::condition_variable cv;
+    std::mutex mtx;
+	
+    &#x2F;&#x2F;三个线程
+    std::thread t1([&amp;] &#123;
+        std::unique_lock lck(mtx);
+        cv.wait(lck); &#x2F;&#x2F; 等待
+        std::cout &lt;&lt; &quot;t1 is awake&quot; &lt;&lt; std::endl;
+    &#125;);
+
+    std::thread t2([&amp;] &#123;
+        std::unique_lock lck(mtx);
+        cv.wait(lck); &#x2F;&#x2F; 等待
+        std::cout &lt;&lt; &quot;t2 is awake&quot; &lt;&lt; std::endl;
+    &#125;);
+
+    std::thread t3([&amp;] &#123;
+        std::unique_lock lck(mtx);
+        cv.wait(lck); &#x2F;&#x2F; 等待
+        std::cout &lt;&lt; &quot;t3 is awake&quot; &lt;&lt; std::endl;
+    &#125;);
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(400));
+
+    std::cout &lt;&lt; &quot;notifying one&quot; &lt;&lt; std::endl;
+    cv.notify_one();  &#x2F;&#x2F; awakening t1 only
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(400));
+
+    std::cout &lt;&lt; &quot;notifying all&quot; &lt;&lt; std::endl;
+    cv.notify_all();  &#x2F;&#x2F; awakening t1 and t2
+
+    t1.join();
+    t2.join();
+    t3.join();
+
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="5-4-案例：实现生产者-消费者模式"><a href="#5-4-案例：实现生产者-消费者模式" class="headerlink" title="5.4 案例：实现生产者-消费者模式"></a>5.4 案例：实现生产者-消费者模式</h3><p>生产者：向缓冲区生产物品，推送后会通知消费者来使用</p>
+<p>消费者：等待缓冲区中有物品，没有物品则陷入等待，直到被通知。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int main() &#123;
+    std::condition_variable cv;
+    std::mutex mtx;
+
+    std::vector&lt;int&gt; foods; &#x2F;&#x2F; 消费队列
+
+    std::thread t1([&amp;] &#123; &#x2F;&#x2F; 消费者1
+        for (int i &#x3D; 0; i &lt; 2; i++) &#123;
+            std::unique_lock lck(mtx);
+            cv.wait(lck, [&amp;] &#123;
+                return foods.size() !&#x3D; 0;
+            &#125;);
+            auto food &#x3D; foods.back();
+            foods.pop_back();
+            lck.unlock();
+
+            std::cout &lt;&lt; &quot;t1 got food:&quot; &lt;&lt; food &lt;&lt; std::endl;
+        &#125;
+    &#125;);
+
+    std::thread t2([&amp;] &#123; &#x2F;&#x2F; 消费者2
+        for (int i &#x3D; 0; i &lt; 2; i++) &#123;
+            std::unique_lock lck(mtx);
+            cv.wait(lck, [&amp;] &#123;
+                return foods.size() !&#x3D; 0;
+            &#125;);
+            auto food &#x3D; foods.back();
+            foods.pop_back();
+            lck.unlock();
+
+            std::cout &lt;&lt; &quot;t2 got food:&quot; &lt;&lt; food &lt;&lt; std::endl;
+        &#125;
+    &#125;);
+
+    &#x2F;&#x2F; 生产
+    foods.push_back(42);
+    foods.push_back(233);
+    cv.notify_one();
+
+    foods.push_back(666);
+    foods.push_back(4399);
+    cv.notify_all();
+
+    t1.join();
+    t2.join();
+
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="5-5-将消费队列封装成类"><a href="#5-5-将消费队列封装成类" class="headerlink" title="5.5  将消费队列封装成类"></a>5.5  将消费队列封装成类</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;class T&gt;
+class MTQueue &#123;
+    std::condition_variable m_cv;
+    std::mutex m_mtx;
+    std::vector&lt;T&gt; m_arr;
+
+public:
+    T pop() &#123;
+        std::unique_lock lck(m_mtx);
+        m_cv.wait(lck, [this] &#123; return !m_arr.empty(); &#125;); &#x2F;&#x2F; 等待队列不为空
+        T ret &#x3D; std::move(m_arr.back());
+        m_arr.pop_back();
+        return ret;
+    &#125;
+
+    auto pop_hold() &#123;
+        std::unique_lock lck(m_mtx);
+        m_cv.wait(lck, [this] &#123; return !m_arr.empty(); &#125;);
+        T ret &#x3D; std::move(m_arr.back());
+        m_arr.pop_back();
+        return std::pair(std::move(ret), std::move(lck));
+    &#125;
+
+    void push(T val) &#123; &#x2F;&#x2F; 
+        std::unique_lock lck(m_mtx);
+        m_arr.push_back(std::move(val));
+        m_cv.notify_one(); &#x2F;&#x2F; 
+    &#125;
+
+    void push_many(std::initializer_list&lt;T&gt; vals) &#123;
+        std::unique_lock lck(m_mtx);
+        std::copy(
+                 std::move_iterator(vals.begin()),
+                 std::move_iterator(vals.end()),
+                 std::back_insert_iterator(m_arr)); &#x2F;&#x2F; 
+        m_cv.notify_all(); &#x2F;&#x2F; 
+    &#125;
+&#125;;
+
+int main() &#123;
+    MTQueue&lt;int&gt; foods;
+
+    std::thread t1([&amp;] &#123;
+        for (int i &#x3D; 0; i &lt; 2; i++) &#123;
+            auto food &#x3D; foods.pop();
+            std::cout &lt;&lt; &quot;t1 got food:&quot; &lt;&lt; food &lt;&lt; std::endl;
+        &#125;
+    &#125;);
+
+    std::thread t2([&amp;] &#123;
+        for (int i &#x3D; 0; i &lt; 2; i++) &#123;
+            auto food &#x3D; foods.pop();
+            std::cout &lt;&lt; &quot;t2 got food:&quot; &lt;&lt; food &lt;&lt; std::endl;
+        &#125;
+    &#125;);
+
+    foods.push(42);
+    foods.push(233);
+    foods.push_many(&#123;666, 4399&#125;);
+
+    t1.join();
+    t2.join();
+
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="5-6-condition-variable-tips"><a href="#5-6-condition-variable-tips" class="headerlink" title="5.6 condition_variable tips"></a>5.6 condition_variable tips</h3><p><code>std::condition_variable</code>仅仅支持<code>std::unique_lock&lt;std::mutex&gt;</code>作为<code>wait</code>的参数，如果需要使用其他类型的<code>mutex</code>锁，可以用<code>std::conditino_variable_any</code>。</p>
+<p>他还有 <code>wait_for()</code> 和 <code>wait_until()</code> 函数，分别接受 chrono 时间段和时间点作为参数。详见：<a target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/thread/condition_variable/wait_for%E3%80%82">https://en.cppreference.com/w/cpp/thread/condition_variable/wait_for。</a></p>
+<h2 id="6-原子操作"><a href="#6-原子操作" class="headerlink" title="6. 原子操作"></a>6. 原子操作</h2><p>mutex 太过重量级，他会让线程被挂起，从而需要通过系统调用，进入<strong>内核层</strong>，调度到其他线程执行，有很大的开销。</p>
+<h3 id="6-1-atomic-lt-T-gt"><a href="#6-1-atomic-lt-T-gt" class="headerlink" title="6.1 atomic&lt;T&gt;"></a>6.1 <code>atomic&lt;T&gt;</code></h3><p>建议用 <code>atomic</code>：有专门的硬件指令加持，对他的 +&#x3D; 等操作，会被编译器转换成专门的指令。</p>
+<p>CPU 识别到该指令时，会锁住内存总线，放弃乱序执行等优化策略（<strong>将该指令视为一个同步点，强制同步掉之前所有的内存操作</strong>），从而向你保证该操作是<strong>原子</strong> <strong>(atomic)</strong> 的（取其不可分割之意），不会加法加到一半另一个线程插一脚进来。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">std::atomic&lt;int&gt; counter &#x3D; 0; &#x2F;&#x2F; 
+
+std::thread t1([&amp;] &#123;
+    for (int i &#x3D; 0; i &lt; 10000; i++) &#123;
+        counter +&#x3D; 1; &#x2F;&#x2F; 
+    &#125;
+&#125;);
+
+std::thread t2([&amp;] &#123;
+    for (int i &#x3D; 0; i &lt; 10000; i++) &#123;
+        counter +&#x3D; 1; &#x2F;&#x2F;
+    &#125;
+&#125;);
+
+t1.join();
+t2.join();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>只支持特定的操作：<code>+=</code>、<code>++</code>，不要把运算符分开。</p>
+<h3 id="6-2-fetch-add-相当于-，但是返回旧值"><a href="#6-2-fetch-add-相当于-，但是返回旧值" class="headerlink" title="6.2 fetch_add()相当于+=，但是返回旧值"></a>6.2 <code>fetch_add()</code>相当于<code>+=</code>，但是返回旧值</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">std::atomic&lt;int&gt; counter;
+counter.store(0); &#x2F;&#x2F; 对应于 &#x3D;
+
+std::thread t1([&amp;] &#123;
+    for (int i &#x3D; 0; i &lt; 10000; i++) &#123;
+        counter.fetch_add(1); &#x2F;&#x2F; 对应于 +&#x3D; 
+    &#125;
+&#125;);
+
+std::thread t2([&amp;] &#123;
+    for (int i &#x3D; 0; i &lt; 10000; i++) &#123;
+        counter.fetch_add(1); &#x2F;&#x2F; 
+    &#125;
+&#125;);
+
+t1.join();
+t2.join();
+
+std::cout &lt;&lt; counter.load() &lt;&lt; std::endl; &#x2F;&#x2F; load用于读取其中的int值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>int old=atm.fetch_add(val)</code>，这个特点使得他可以用于<strong>并行地往一个列表里追加数据</strong>。相比于<code>++</code>，它能够追加多个值<code>counter.fetch_add(n)</code>。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">std::atomic&lt;int&gt; counter;
+counter.store(0);
+
+std::vector&lt;int&gt; data(20000);
+
+std::thread t1([&amp;] &#123;
+    for (int i &#x3D; 0; i &lt; 10000; i++) &#123;
+        int index &#x3D; counter.fetch_add(1); &#x2F;&#x2F; 除了令counter加1，还会counter返回增加前的值
+        data[index] &#x3D; i; &#x2F;&#x2F; 追加写入的索引就是 fetch_add 返回的旧值。
+    &#125;
+&#125;);
+
+std::thread t2([&amp;] &#123;
+    for (int i &#x3D; 0; i &lt; 10000; i++) &#123;
+        int index &#x3D; counter.fetch_add(1);
+        data[index] &#x3D; i + 10000;
+    &#125;
+&#125;);
+
+t1.join();
+t2.join();
+
+std::cout &lt;&lt; data[10000] &lt;&lt; std::endl;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="6-3-exchange：读取的同时写入"><a href="#6-3-exchange：读取的同时写入" class="headerlink" title="6.3 exchange：读取的同时写入"></a>6.3 <code>exchange</code>：读取的同时写入</h3><p><code>exchange(val) 会把 val 写入原子变量，同时返回其旧的值。</code></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">std::atomic&lt;int&gt; counter;
+
+counter.store(0);
+
+int old &#x3D; counter.exchange(3); &#x2F;&#x2F; 写入3，返回0
+std::cout &lt;&lt; &quot;old&#x3D;&quot; &lt;&lt; old &lt;&lt; std::endl;  &#x2F;&#x2F; 0
+
+int now &#x3D; counter.load();
+std::cout &lt;&lt; &quot;cnt&#x3D;&quot; &lt;&lt; now &lt;&lt; std::endl;  &#x2F;&#x2F; 3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="6-4-compare-exchange-strong：读取，比较是否相等，相等则写入"><a href="#6-4-compare-exchange-strong：读取，比较是否相等，相等则写入" class="headerlink" title="6.4 compare_exchange_strong：读取，比较是否相等，相等则写入"></a>6.4 <code>compare_exchange_strong</code>：读取，比较是否相等，相等则写入</h3><ul>
+<li>如果不相等，则把原子变量的值写入 <code>old</code>。</li>
+<li>如果相等，则把 <code>val</code> 写入原子变量。</li>
+</ul>
+<p>返回一个 bool 值，表示是否相等。</p>
+<p><code>compare_exchange_strong</code> 一般简称 CAS (compare-and-swap)，他是并行编程最常用的原子操作之一。实际上任何 atomic 操作，包括 fetch_add，都可以基于 CAS 来实现。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">boolalpha(std::cout);
+std::atomic&lt;int&gt; counter;
+
+counter.store(2);
+
+int old &#x3D; 1;
+bool equal &#x3D; counter.compare_exchange_strong(old, 3); &#x2F;&#x2F; 2！&#x3D;1，2写入old，这里old传的是一个引用
+std::cout &lt;&lt; &quot;equal&#x3D;&quot; &lt;&lt; equal &lt;&lt; std::endl;  &#x2F;&#x2F; false
+std::cout &lt;&lt; &quot;old&#x3D;&quot; &lt;&lt; old &lt;&lt; std::endl;  &#x2F;&#x2F; 2
+
+int now &#x3D; counter.load();
+std::cout &lt;&lt; &quot;cnt&#x3D;&quot; &lt;&lt; now &lt;&lt; std::endl;  &#x2F;&#x2F; 3
+
+old &#x3D; 2;
+equal &#x3D; counter.compare_exchange_strong(old, 3); &#x2F;&#x2F; 2&#x3D;&#x3D;2，3写入counter
+std::cout &lt;&lt; &quot;equal&#x3D;&quot; &lt;&lt; equal &lt;&lt; std::endl;  &#x2F;&#x2F; true
+std::cout &lt;&lt; &quot;old&#x3D;&quot; &lt;&lt; old &lt;&lt; std::endl;  &#x2F;&#x2F; 1
+
+now &#x3D; counter.load();
+std::cout &lt;&lt; &quot;cnt&#x3D;&quot; &lt;&lt; now &lt;&lt; std::endl;  &#x2F;&#x2F; 3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ya411q7y4">【公开课】C++11开始的多线程编程（#5）_哔哩哔哩_bilibili</a></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">qingyu</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://qingyu21.github.io/2022/05/09/c-duo-xian-cheng-bian-cheng/">http://qingyu21.github.io/2022/05/09/c-duo-xian-cheng-bian-cheng/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">qingyu</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/C/">
+                                    <span class="chip bg-color">C++</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+                                    <span class="chip bg-color">多线程</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/05/13/golang-ji-chu-yu-fa/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Golang基础语法">
+                        
+                        <span class="card-title">Golang基础语法</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-13
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/golang/" class="post-category">
+                                    golang
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/golang/">
+                        <span class="chip bg-color">golang</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/05/01/wu-li-nei-cun-guan-li/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="物理内存管理">
+                        
+                        <span class="card-title">物理内存管理</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    操作系统
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                        <span class="chip bg-color">操作系统</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
+                        <span class="chip bg-color">内存管理</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2022</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank"></a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">33.5k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2021";
+                    var startMonth = "10";
+                    var startDate = "6";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/qingyu21" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:853623491@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=853623491" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 853623491" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
